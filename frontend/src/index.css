@@ -1,0 +1,124 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Syne:wght@600;700;800&display=swap');
+
+/* ── Base resets ──────────────────────────────────────────────────────── */
+* { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-gray-50 text-gray-900 font-sans;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Dark mode body */
+.dark body,
+.dark {
+  @apply bg-gray-950 text-gray-100;
+}
+
+/* ── Scrollbar styling ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { @apply bg-gray-100 dark:bg-gray-800; }
+::-webkit-scrollbar-thumb { @apply bg-gray-400 dark:bg-gray-600 rounded-full; }
+
+/* ── Utility classes ──────────────────────────────────────────────────── */
+@layer components {
+  .card {
+    @apply bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-700 p-5 transition-colors;
+  }
+
+  .card-hover {
+    @apply card hover:shadow-md hover:border-brand-green/40 dark:hover:border-brand-green/40 transition-all duration-200;
+  }
+
+  .btn-primary {
+    @apply bg-brand-green hover:bg-green-600 text-white font-semibold px-5 py-2.5 rounded-xl transition-all duration-200 shadow-sm;
+  }
+
+  .btn-secondary {
+    @apply bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-800 dark:text-gray-200 font-medium px-5 py-2.5 rounded-xl transition-all duration-200;
+  }
+
+  .btn-ghost {
+    @apply text-gray-600 dark:text-gray-400 hover:text-brand-green dark:hover:text-brand-green hover:bg-gray-100 dark:hover:bg-gray-800 px-3 py-2 rounded-lg transition-all duration-200;
+  }
+
+  .badge {
+    @apply inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+
+  .badge-green  { @apply badge bg-green-100 text-green-700 dark:bg-green-900/40 dark:text-green-400; }
+  .badge-amber  { @apply badge bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-400; }
+  .badge-sky    { @apply badge bg-sky-100 text-sky-700 dark:bg-sky-900/40 dark:text-sky-400; }
+  .badge-purple { @apply badge bg-purple-100 text-purple-700 dark:bg-purple-900/40 dark:text-purple-400; }
+
+  .section-title {
+    @apply text-2xl md:text-3xl font-display font-bold text-gray-900 dark:text-white;
+  }
+
+  .section-subtitle {
+    @apply text-gray-500 dark:text-gray-400 mt-1;
+  }
+
+  .metric-card {
+    @apply card flex flex-col gap-1;
+  }
+
+  .metric-value {
+    @apply text-3xl font-display font-bold text-gray-900 dark:text-white;
+  }
+
+  .metric-label {
+    @apply text-sm text-gray-500 dark:text-gray-400;
+  }
+
+  /* Floor selector elevator button */
+  .floor-btn {
+    @apply w-10 h-10 rounded-lg flex items-center justify-center text-xs font-bold border-2 cursor-pointer transition-all duration-200;
+  }
+
+  .floor-btn-active {
+    @apply floor-btn bg-brand-green border-brand-green text-white scale-110 shadow-md shadow-green-500/30;
+  }
+
+  .floor-btn-inactive {
+    @apply floor-btn border-gray-300 dark:border-gray-600 text-gray-500 dark:text-gray-400 hover:border-brand-green hover:text-brand-green bg-white dark:bg-gray-800;
+  }
+}
+
+/* ── 3D Canvas ────────────────────────────────────────────────────────── */
+canvas {
+  outline: none !important;
+}
+
+/* ── Gradient text ────────────────────────────────────────────────────── */
+.gradient-text {
+  background: linear-gradient(135deg, #22C55E 0%, #14B8A6 50%, #38BDF8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Glassmorphism panels ─────────────────────────────────────────────── */
+.glass {
+  backdrop-filter: blur(12px);
+  @apply bg-white/80 dark:bg-gray-900/80 border border-white/20 dark:border-gray-700/50;
+}
+
+/* ── Parking bay grid ─────────────────────────────────────────────────── */
+.parking-bay {
+  @apply rounded-md border-2 flex flex-col items-center justify-center text-xs font-bold cursor-pointer transition-all duration-150;
+}
+
+.bay-standard  { @apply parking-bay bg-gray-100 dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-gray-500; }
+.bay-occupied  { @apply parking-bay bg-red-100 dark:bg-red-900/30 border-red-400 text-red-600 dark:text-red-400; }
+.bay-ev        { @apply parking-bay bg-green-100 dark:bg-green-900/30 border-green-500 text-green-700 dark:text-green-400; }
+.bay-ev-active { @apply parking-bay bg-green-400 border-green-600 text-white shadow-lg shadow-green-400/50; }
+.bay-accessible{ @apply parking-bay bg-blue-100 dark:bg-blue-900/30 border-blue-400 text-blue-600 dark:text-blue-400; }
