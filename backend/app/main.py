@@ -19,10 +19,18 @@ app = FastAPI(
     redoc_url="/api/redoc",
 )
 
-# CORS – allow the React dev server
+# CORS – allow the React dev server + Vercel production + any preview
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://localhost:3000", "*"],
+    allow_origins=[
+        "http://localhost:5173",
+        "http://localhost:3000",
+        "https://eco-pulse.vercel.app",
+        "https://ecopulse-frontend.vercel.app",
+        # Allow all Vercel preview URLs for this project
+        "https://*.vercel.app",
+        "*",
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
